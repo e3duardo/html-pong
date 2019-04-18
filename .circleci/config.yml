@@ -3,7 +3,7 @@ jobs:
   build:
     branches:
       ignore: gh-pages
-    working_directory: ~/snake
+    working_directory: ~/pong
     docker:
       - image: circleci/node
     steps:
