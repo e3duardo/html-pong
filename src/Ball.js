@@ -18,16 +18,25 @@ class Ball {
   }
 
   start = (x, y)=>{
+	  this.x += x;
+	  this.y += y;
 
-		  console.log('ball')
+	  const colideTop = this.y <= 0;
+	  const colideBottom = this.y >= this.game.height/this.game.scaleY - 1;
+	  const colideLeft = this.x <= 0;
+	  const colideRight = this.x >= this.game.width/this.game.scaleX - 1;
 
-		  this.x -= x;
-		  this.y -= x;
+	  if(colideTop || colideBottom){
+		  y = -y;
+	  }
+	  if(colideLeft || colideRight){
+		  console.warn('game over');
+		  x = -x;
+	  }
 
-		  if(this.y < 0){
-			  this.y
-		  }
-		  this.start(x--, y--)
+	  setTimeout(()=>{
+		  this.start(x, y)
+	  },1000/10)
 
   }
 }

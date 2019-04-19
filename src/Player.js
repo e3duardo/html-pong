@@ -2,6 +2,8 @@ class Player {
 	constructor(game, n) {
 		this.playerTag = document.querySelector('.Player'+n);
 		this.game = game;
+
+		this.lastMove = 0;
 		// this.autoMoveInterval;
 
 		// this.tail = [];
@@ -23,7 +25,15 @@ class Player {
 		// }
 	}
 
+	get isGoingUp (){
+		return thus.lastMove > 0;
+	}
+	get isGoingDown (){
+		return thus.lastMove < 0;
+	}
+
 	moveUp = ()=>{
+		this.lastMove = 1;
 		this.playerTag.style.top = this.playerTag.offsetTop-(this.game.scaleY*2)+'px';
 
 		if(this.playerTag.offsetTop < 0){
@@ -31,6 +41,7 @@ class Player {
 		}
 	}
 	moveDown = ()=>{
+		this.lastMove = -1;
 		this.playerTag.style.top = this.playerTag.offsetTop+(this.game.scaleY*2)+'px';
 
 		if(this.playerTag.offsetTop+this.playerTag.offsetHeight > this.game.height){

@@ -13,18 +13,20 @@ class Game {
 		this.player1 = new Player(this, 1);
 		this.player2 = new Player(this, 2);
 		this.ball = new Ball(this);
-		this.ball.start(-1, -1);
+		this.ball.start(-1,-1);
 
 		// this.score = new Score(this);
 		// this.food.randominize();
 
 		document.addEventListener("keydown", e => this.movePlayer(e));
-			this.playingInterval = setInterval(this.update, 0);
+
+		this.playingInterval = setInterval(this.update, 1000/60);
 	}
 
 	update = ()=>{
 		// this.snake.update();
 		this.ball.update();
+		// this.ball.move();
 		// this.score.update();
 	}
 
