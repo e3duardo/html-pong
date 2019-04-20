@@ -5,16 +5,16 @@ game.update();
 
 (function(){
 
-	document.getElementById('play').addEventListener("click", function(e) {
-		if(game.isPlaying){
-			game.pause();
-		}else{
-			game.play();
-		}
-	});
+	// document.getElementById('play').addEventListener("click", function(e) {
+	// 	if(game.isPlaying){
+	// 		game.pause();
+	// 	}else{
+	// 		game.play();
+	// 	}
+	// });
 
-	window.onblur = ()=>{
-		game.pause();
-	}
+	// window.onblur = ()=>{
+	// 	game.pause();
+	// }
 
 })();

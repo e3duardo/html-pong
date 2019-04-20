@@ -13,10 +13,8 @@ class Game {
 		this.player1 = new Player(this, 1);
 		this.player2 = new Player(this, 2);
 		this.ball = new Ball(this);
-		this.ball.start(-1,-1);
 
-		// this.score = new Score(this);
-		// this.food.randominize();
+		this.ball.startRandom();
 
 		document.addEventListener("keydown", e => this.movePlayer(e));
 
@@ -24,42 +22,23 @@ class Game {
 	}
 
 	update = ()=>{
-		// this.snake.update();
 		this.ball.update();
-		// this.ball.move();
-		// this.score.update();
-	}
-
-	play = (x, y)=>{
-	// 	this.playingInterval = setInterval(this.update, 0);
-	// 	this.playing = true;
-	//
-	// 	if(this.snake.autoMove != null || (x!=undefined && y!=undefined)){
-	// 		if(x==undefined && y==undefined){
-	// 			x=this.snake.autoMove.x;
-	// 			y=this.snake.autoMove.y;
-	// 		}
-	// 		this.snake.move(x, y);
-	// 		this.snake.autoMove = null;
-	// 	}
-	//
-	// 	document.getElementById('play').innerHTML = "Pause";
-	}
-
-	pause = ()=>{
-	// 	clearInterval(this.playingInterval);
-	// 	this.playing = false;
-	// 	document.getElementById('play').innerHTML = "Play";
 	}
 
 	movePlayer = (e)=>{
 
 		switch (e.key) {
-			case "ArrowUp":
+			case "q":
 				this.player1.moveUp();
 			break;
-			case "ArrowDown":
+			case "a":
 				this.player1.moveDown();
+			break;
+			case "ArrowUp":
+				this.player2.moveUp();
+			break;
+			case "ArrowDown":
+				this.player2.moveDown();
 			break;
 		}
 

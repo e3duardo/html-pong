@@ -1,35 +1,19 @@
 class Player {
 	constructor(game, n) {
+		this.n = n;
 		this.playerTag = document.querySelector('.Player'+n);
 		this.game = game;
-
 		this.lastMove = 0;
-		// this.autoMoveInterval;
+		this.score = 0;
 
-		// this.tail = [];
-		// this.length = 0;
+	}
 
-		// this.blocks = [];
-		// const divs = document.querySelectorAll('.Snake');
-		// for (let i = 0; i < divs.length; ++i) {
-			// const block = new SnakeBlock(this.game, divs[i]);
-			// this.blocks.push(block);
-		// }
-
-		// this.autoMove = null;
+	tickScore = ()=>{
+		this.score++;
+		document.querySelector('.ScorePlayer'+this.n).innerHTML=this.score;
 	}
 
 	update = ()=>{
-		// for (let i = 0; i < this.blocks.length; ++i) {
-		// 	this.blocks[i].update();
-		// }
-	}
-
-	get isGoingUp (){
-		return thus.lastMove > 0;
-	}
-	get isGoingDown (){
-		return thus.lastMove < 0;
 	}
 
 	moveUp = ()=>{
@@ -48,83 +32,49 @@ class Player {
 			this.playerTag.style.top = this.game.height-this.playerTag.offsetHeight+'px';
 		}
 	}
-	// move = (x, y, auto)=>{
-	// 	clearInterval(this.autoMoveInterval);
-	//
-	// 	if(this.game.isPlaying){
-	// 		//moving references
-	// 		this.tail.push({x: this.x, y: this.y});
-	// 		while (this.tail.length > this.length) {
-	// 		  this.tail.shift();
-	// 		}
-	// 		this.x+=x;
-	// 		this.y+=y;
-	// 		for (let i = 0; i < this.tail.length; ++i) {
-	// 			this.blocks[i+1].x = this.tail[i].x;
-	// 			this.blocks[i+1].y = this.tail[i].y;
-	// 		}
-	//
-	// 		//automoving
-	// 		this.autoMoveInterval = setInterval(()=>{
-	// 			this.move(x, y, true);
-	// 		}, 300);
-	//
-	// 		//eat
-	// 		if(this.blocks[0].colideWith(this.game.food)){
-	// 			this.eat();
-	// 		}
-	//
-	// 		if(this.blocks[0].colideWithStage() || this.colideWithTail()){
-	// 			this.died();
-	// 		}
-	// 	}else if(auto){
-	// 		this.autoMove = {x: x, y: y};
-	// 	}
-	// }
-	//
-	// colideWithTail = ()=>{
-	// 	for (var i = 1; i < this.tail.length; i++) {
-	// 		if(this.blocks[0].colideWith(this.blocks[i])){
-	// 			return true;
-	// 		}
-	// 	}
-	// 	return false;
-	// }
-	//
-	// eat = ()=>{
-	// 	this.game.score.tick();
-	// 	this.game.food.randominize();
-	//
-	// 	this.length++;
-	// 	this.blocks.push(new SnakeBlock(this.game));
-	// }
-	//
-	// died = ()=>{
-	// 	this.game.score.tickDeath()
-	// 	this.game.food.randominize();
-	//
-	// 	clearInterval(this.autoMoveInterval);
-	//
-	// 	while(this.blocks.length>1){
-	// 		this.blocks.shift().destroy();
-	// 	}
-	// 	this.x = 0;
-	// 	this.y = 0;
-	// 	this.length=0;
-	// }
-	//
-	// get x (){
-	// 	return this.blocks[0].x;
-	// }
-	// set x (x){
-	// 	return this.blocks[0].x = x;
-	// }
-	// get y (){
-	// 	return this.blocks[0].y;
-	// }
-	// set y (y){
-	// 	return this.blocks[0].y = y;
-	// }
+
+	get isGoingUp (){
+		return this.lastMove > 0;
+	}
+	get isGoingDown (){
+		return this.lastMove < 0;
+	}
+
+	get colideWithY (){
+		if(this.game.ball == undefined){
+			return false;
+		}
+		const colideWithTop = this.y - this.game.ball.height <= this.game.ball.y * this.game.scaleY;
+		const colideWithBottom = this.y + this.height + this.game.ball.height >= this.game.ball.y * this.game.scaleY;
+		return colideWithTop && colideWithBottom;
+	}
+	get colideWithLeft (){
+		if(this.game.ball == undefined){
+			return false;
+		}
+		const colideWithLeft = this.game.ball.x * this.game.scaleX <= this.x + this.width;
+		return colideWithLeft;
+	}
+	get colideWithRight (){
+		if(this.game.ball == undefined){
+			return false;
+		}
+		const colideWithRight = (this.game.ball.x * this.game.scaleX) + this.game.ball.width >= this.x ;
+		return colideWithRight;
+	}
+
+	get x (){
+		return this.playerTag.offsetLeft;
+	}
+	get y (){
+		return this.playerTag.offsetTop;
+	}
+	get width (){
+		return this.playerTag.offsetWidth;
+	}
+	get height (){
+		return this.playerTag.offsetHeight;
+	}
 }
 
 export {Player as default};
