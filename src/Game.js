@@ -1,6 +1,5 @@
 import Ball from './Ball';
 import Player from './Player';
-// import Score from './Score';
 
 class Game {
 	constructor(){
