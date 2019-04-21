@@ -8,9 +8,8 @@ class Ball {
 	}
 
 	reset = ()=>{
-		this.x = Math.floor(this.game.width / this.game.scaleX / 2)+1;
-		this.y = Math.floor(this.game.height / this.game.scaleY / 2)+1;
-		this.startRandom();
+		this.x = Math.floor(this.game.width / this.game.scaleX / 2);
+		this.y = Math.floor(this.game.height / this.game.scaleY / 2);
 	}
 
 	update = ()=>{
@@ -19,7 +18,10 @@ class Ball {
 	}
 
 	startRandom = ()=>{
-		this.start(Math.floor(Math.random() * 2)-1, Math.floor(Math.random() * 2)-1);
+		const x = Math.floor(Math.random() * 2)-1;
+		const y = Math.floor(Math.random() * 2)-1;
+
+		this.start(x>0?1:-1, y>0?1:-1);
 	}
 
 	start = (x, y)=>{
@@ -43,18 +45,19 @@ class Ball {
 
 		if(colideSceneLeft){
 			this.game.player2.tickScore();
-			this.reset();
-			return;
 		}
 		if(colideSceneRight){
 			this.game.player1.tickScore();
+		}
+		if(colideSceneLeft || colideSceneRight){
 			this.reset();
+			this.startRandom();
 			return;
 		}
 
 		setTimeout(()=>{
 			this.start(x, y)
-		},1000/2)
+		},1000/3)
 	}
 
 	get width (){

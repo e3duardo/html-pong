@@ -3,20 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title>Pong - The Game</title>
+	 <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 	 <style>
+		@font-face {
+			font-family: square;
+			src: url(square.ttf);
+		}
 	 	a{
 			text-decoration: none;
 		}
 	 	.Stage{
 			position: relative;
-			width: 700px;
-			height: 504px;
+			width: 812px;
+			height: 588px;
 			background: #fff;
-			border: 2px solid #bbb;
+			/* border: 2px solid #bbb; */
 			margin: 0 auto;
 			display: flex;
 		}
 		.Score{
+			font-family: 'square', cursive;
 			color: #fff;
 			position: absolute;
 			left: 50px;
@@ -29,7 +35,7 @@
 		}
 		.Scene{
 			position: relative;
-			width: 700px;
+			width: 100%;
 			height: 100%;
 			background: #000;
 		}
@@ -54,9 +60,9 @@
 		.Player{
 			position: absolute;
 			left: 10px;
-			top: calc(50% - 30px);
+			top: calc(50% - 42px);
 			width: 20px;
-			height: 60px;
+			height: 84px;
 			background: #fff;
 		}
 		.Player2{

@@ -11,8 +11,8 @@ class Game {
 
 		this.player1 = new Player(this, 1);
 		this.player2 = new Player(this, 2);
+		
 		this.ball = new Ball(this);
-
 		this.ball.startRandom();
 
 		document.addEventListener("keydown", e => this.movePlayer(e));
